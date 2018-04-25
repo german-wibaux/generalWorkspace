@@ -4,15 +4,15 @@ public class Practico2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArbolBinario tree = new ArbolBinario();
-		tree.agregarElemento(25);
-		tree.agregarElemento(20);
-		tree.agregarElemento(30);
-		tree.agregarElemento(10);
-		tree.agregarElemento(40);
-		tree.agregarElemento(28);
-		tree.agregarElemento(24);
+		tree.insert(25);
+		tree.insert(20);
+		tree.insert(30);
+		tree.insert(10);
+		tree.insert(40);
+		tree.insert(28);
+		tree.insert(24);
 		tree.postOrder();
-		//System.out.println(tree.esVacio());
+		System.out.println(tree.hasElement(40));
 	}
 
 }

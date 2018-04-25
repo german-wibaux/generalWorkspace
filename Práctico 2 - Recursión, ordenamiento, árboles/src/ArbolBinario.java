@@ -7,7 +7,7 @@ public class ArbolBinario {
 		this.raiz = null;
 	}
 	
-	private NodoArbol insertarNodo( NodoArbol nodo, NodoArbol raiz1) {
+	private NodoArbol insert( NodoArbol nodo, NodoArbol raiz1) {
         if ( raiz1 == null ) {
             raiz1 = new NodoArbol();
             raiz1.setDato(nodo.getDato());
@@ -20,21 +20,21 @@ public class ArbolBinario {
         else {
             
             if ( nodo.getDato() <= raiz1.getDato() ) {                
-                raiz1.setIzq(insertarNodo(nodo, raiz1.getIzq())); 
+                raiz1.setIzq(insert(nodo, raiz1.getIzq())); 
             }
             else {
-                raiz1.setDer(insertarNodo(nodo, raiz1.getDer()));
+                raiz1.setDer(insert(nodo, raiz1.getDer()));
             } 
         }        
         return raiz1;        
     }
  
-    public void agregarElemento( int dato ) {    	
+    public void insert( int dato ) {    	
         NodoArbol ins = new NodoArbol();
         ins.setDato(dato);
         ins.setIzq(null);
         ins.setDer(null); 
-    	this.insertarNodo( ins, this.raiz );
+    	this.insert( ins, this.raiz );
     }
     
     public boolean esVacio(){
@@ -75,6 +75,22 @@ public class ArbolBinario {
     
     public void postOrder() {
     	this.postOrder(this.raiz);
+    }
+    
+    private boolean hasElement(NodoArbol actual, int valor) {
+        if (actual == null) {
+            return false;
+        } 
+        if (valor == actual.getDato()) {
+            return true;
+        } 
+        return valor < actual.getDato()
+          ? hasElement(actual.getIzq(), valor)
+          : hasElement(actual.getDer(), valor);
+    }
+    
+    public boolean hasElement(int valor) {
+        return hasElement(this.raiz, valor);
     }
 	
 }
