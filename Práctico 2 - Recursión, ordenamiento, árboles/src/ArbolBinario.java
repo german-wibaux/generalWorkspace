@@ -92,5 +92,52 @@ public class ArbolBinario {
     public boolean hasElement(int valor) {
         return hasElement(this.raiz, valor);
     }
+    
+    public void borrar(int dato) {
+    	 
+        borrarElemento(this.raiz, dato);
+    }
+
+    private NodoArbol borrarElemento(NodoArbol raiz, int dato) {
+ 
+        if(raiz == null) return raiz;
+ 
+        if(dato < raiz.getDato()) {
+            raiz.setIzq(borrarElemento(raiz.getIzq(), dato));
+        } else if(dato > raiz.getDato()) {
+            raiz.setDer(borrarElemento(raiz.getDer(), dato));
+        } else {
+            // node with no leaf nodes
+            if(raiz.getIzq() == null && raiz.getDer() == null) {
+                System.out.println("deleting "+ dato);
+                return null;
+            } else if(raiz.getIzq() == null) {
+                // node with one node (no left node)
+                System.out.println("deleting "+dato);
+                return raiz.getDer();
+            } else if(raiz.getDer() == null) {
+                // node with one node (no right node)
+                System.out.println("deleting "+dato);
+                return raiz.getIzq();
+            } else {
+                // nodes with two nodes
+                // search for min number in right sub tree
+                int minVal = minValor(raiz.getDer());
+                raiz.setDato(minVal);
+                raiz.setDer(borrarElemento(raiz.getDer(), minVal));
+                System.out.println("deleting "+ dato);
+            }
+        }
+ 
+        return raiz;
+    }
+ 
+    private Integer minValor(NodoArbol nodo) {
+ 
+        if(nodo.getIzq() != null) {
+            return minValor(nodo.getIzq());
+        }
+        return nodo.getDato();
+    }
 	
 }

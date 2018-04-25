@@ -11,8 +11,15 @@ public class Practico2 {
 		tree.insert(40);
 		tree.insert(28);
 		tree.insert(24);
-		tree.postOrder();
+		tree.insert(45);
+		tree.insert(43);
+		
 		System.out.println(tree.hasElement(40));
+		tree.borrar(30);
+		//tree.inOrder();
+		tree.borrar(28);
+		tree.borrar(24);
+		tree.inOrder();
 	}
 
 }
