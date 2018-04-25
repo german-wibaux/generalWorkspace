@@ -4,7 +4,7 @@ public class NodoArbol {
         private NodoArbol der;
         private int dato;
  
-        private NodoArbol(){
+        public NodoArbol(){
             this.izq = null;
             this.der = null;
             dato = 0;
